@@ -7,12 +7,27 @@
 //
 
 import UIKit
-
+import Stripe
 class ViewController: UIViewController {
 
+    @IBAction func ApplePayAction(_ sender: Any) {
+        
+    }
+    private func configureApplePayButton() {
+        
+        if Stripe.deviceSupportsApplePay() {
+            ApplePayManager.shared = ApplePayManager()
+            for subview in applePayView.subviews {
+                subview.removeFromSuperview()
+            }
+           let applePayButton = ApplePayManager.shared?.applePayButton(on: self.applePayView)
+            self.applePayView.addSubview(applePayButton!)
+           ApplePayManager.shared?.currentViewController = self
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+       configureApplePayButton()
     }
 
 
