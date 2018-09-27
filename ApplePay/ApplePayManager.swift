@@ -10,7 +10,7 @@ import UIKit
 import Stripe
 
 class ApplePayManager: NSObject, PKPaymentAuthorizationViewControllerDelegate {
-    
+    let applePayMerchantId = "merchant.com.beglammed.bgcustomer"
     static var shared: ApplePayManager?
     
     var finalDiscountAmount = 0.0
